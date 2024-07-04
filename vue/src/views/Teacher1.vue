@@ -1,4 +1,4 @@
-
+// 查看课程评价
 <template>
   <div>
     <el-container>
@@ -50,7 +50,35 @@
         </el-header>
 
         <el-main>
-          主体内容
+          <div class="table-container">
+            <el-table :data="courses" class="centered-table" style="width: 80%" stripe="true">
+              <el-table-column prop="name" label="课程名称" width="240" align="center"></el-table-column>
+              <el-table-column prop="time" label="开设时间" width="240" align="center"></el-table-column>
+              <el-table-column prop="rating" label="课程评分" width="240" align="center"></el-table-column>
+              <el-table-column label="操作" width="240">
+                <template slot-scope="scope">
+                  <el-button @click="handleShowDetails(scope.row)" type="primary" size="small">查看详情</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
+
+            <el-dialog :visible.sync="dialogVisible" title="课程详情">
+              <div class="course-info">
+                <span>课程名称: {{ selectedCourse.name }}</span>
+                <span>开设时间: {{ selectedCourse.time }}</span>
+                <span>课程评分: {{ selectedCourse.rating }}</span>
+              </div>
+              <div v-if="selectedCourse.reviews && selectedCourse.reviews.length">
+                <el-collapse>
+                  <el-collapse-item title="学生评价">
+                    <ul>
+                      <li v-for="(review, index) in selectedCourse.reviews" :key="index">学生评价{{ index + 1 }}: {{ review }}</li>
+                    </ul>
+                  </el-collapse-item>
+                </el-collapse>
+              </div>
+            </el-dialog>
+          </div>
         </el-main>
       </el-container>
 
@@ -58,8 +86,24 @@
   </div>
 </template>
 
-<style scoped>
+<style>
+.table-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0; /* 确保表格贴紧上侧边界 */
+}
 
+.centered-table {
+  width: 80%;
+  margin: 0; /* 确保表格居中 */
+}
+
+.course-info span {
+  flex: 1;
+  text-align: center;
+  margin-right: 20px;
+}
 </style>
 
 <script>
@@ -67,15 +111,28 @@ export default {
   name: 'Teacher1',
   data() {
     return {
-      teacherName: '范老师' // 替换为实际的教师姓名变量
+      teacherName: '范老师', // 替换为实际的教师姓名变量
+      courses: [
+        { name: '课程1', time: '2024-01', rating: 8, reviews: ["非常好", "讲得很详细"] },
+        { name: '课程2', time: '2024-02', rating: 9, reviews: ["内容丰富", "老师讲课有趣"] },
+        { name: '课程3', time: '2024-03', rating: 7, reviews: ["还不错", "需要更多实例"] },
+      ],
+      dialogVisible: false,
+      selectedCourse: {}
     };
   },
   methods: {
     handleCommand(command) {
       this.$router.push("/")
+    },
+    handleShowDetails(course) {
+      this.selectedCourse = course;
+      this.dialogVisible = true;
     }
   }
 };
+
+
 </script>
 
 
