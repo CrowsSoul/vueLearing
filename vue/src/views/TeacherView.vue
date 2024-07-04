@@ -51,8 +51,12 @@
 
         </el-header>
 
-        <el-main>
-          主体内容
+        <el-main style="  display: flex;
+            justify-content: center;
+            align-items: flex-start; /* 将内容向顶部对齐 */
+            min-height: 100vh; /* 使 main 占据整个视口高度 */">
+          <img src="@/assets/TeacherMainView.png" alt="TeacherMainView"
+          style="width: 60%; height: 90%; object-fit: cover;">
         </el-main>
       </el-container>
 

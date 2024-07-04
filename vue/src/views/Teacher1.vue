@@ -52,10 +52,10 @@
         <el-main>
           <div class="table-container">
             <el-table :data="courses" class="centered-table" style="width: 80%" stripe="true">
-              <el-table-column prop="name" label="课程名称" width="240" align="center"></el-table-column>
-              <el-table-column prop="time" label="开设时间" width="240" align="center"></el-table-column>
-              <el-table-column prop="rating" label="课程评分" width="240" align="center"></el-table-column>
-              <el-table-column label="操作" width="240">
+              <el-table-column prop="name" label="课程名称" width="255" align="center"></el-table-column>
+              <el-table-column prop="time" label="开设时间" width="255" align="center"></el-table-column>
+              <el-table-column prop="rating" label="课程评分" width="255" align="center"></el-table-column>
+              <el-table-column label="操作" width="255">
                 <template slot-scope="scope">
                   <el-button @click="handleShowDetails(scope.row)" type="primary" size="small">查看详情</el-button>
                 </template>
@@ -102,7 +102,7 @@
 .course-info span {
   flex: 1;
   text-align: center;
-  margin-right: 20px;
+  margin-right: 50px;
 }
 </style>
 

@@ -1,3 +1,4 @@
+// 确认课程信息
 
 <template>
   <div>
@@ -50,7 +51,27 @@
         </el-header>
 
         <el-main>
-          主体内容
+          <div class="table-container">
+            <el-table :data="courses" class="centered-table" style="width: 80%" stripe="true">
+              <el-table-column prop="name" label="课程名称" width="200" align="center"></el-table-column>
+              <el-table-column prop="time" label="开设时间" width="200" align="center"></el-table-column>
+              <el-table-column prop="students" label="学生规模" width="200" align="center"></el-table-column>
+              <el-table-column prop="executor" label="执行人" width="200" align="center"></el-table-column>
+              <el-table-column label="操作" width="220">
+                <template slot-scope="scope">
+                  <div class="action-container">
+                    <el-select v-model="scope.row.status" placeholder="请选择" :disabled="scope.row.processed">
+                      <el-option label="接受" value="accepted"></el-option>
+                      <el-option label="拒接" value="rejected"></el-option>
+                      <el-option label="待协商" value="pending"></el-option>
+                    </el-select>
+                    <el-button v-if="!scope.row.processed" :disabled="!scope.row.status" @click="handleProcess(scope.row)">提交</el-button>
+                    <i v-else class="el-icon-check"></i>
+                  </div>
+                </template>
+              </el-table-column>
+            </el-table>
+          </div>
         </el-main>
       </el-container>
 
@@ -59,7 +80,20 @@
 </template>
 
 <style scoped>
+.table-container {
+  margin-top: 20px;
+}
 
+.action-container {
+  display: flex;
+  justify-content: space-between; /* 或者其他适当的 justify-content 设置 */
+  align-items: center; /* 垂直居中对齐 */
+}
+
+.processed-status {
+  display: flex;
+  justify-content: center;
+}
 </style>
 
 <script>
@@ -67,12 +101,21 @@ export default {
   name: 'Teacher2',
   data() {
     return {
-      teacherName: '范老师' // 替换为实际的教师姓名变量
+      teacherName: '范老师',
+      courses: [
+        { name: '课程1', time: '2024-01', students: '30', executor: '张三', status: '', processed: false },
+        { name: '课程2', time: '2024-02', students: '25', executor: '李四', status: '', processed: false },
+        { name: '课程3', time: '2024-03', students: '20', executor: '王五', status: '', processed: false },
+      ],
     };
   },
   methods: {
     handleCommand(command) {
       this.$router.push("/")
+    },
+    handleProcess(row) {
+      row.processed = true;
+      // 可以在这里添加提交逻辑，例如向后端发送数据等
     }
   }
 };
