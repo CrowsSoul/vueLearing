@@ -1,7 +1,27 @@
-/**{*/
-/*    box-sizing: border-box;*/
-/*}*/
-/*body{*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*}*/
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.el-menu--inline .el-menu-item {
+    background-color: #000c17 !important;
+}
+.el-menu-item:hover {
+    color: #fff !important;
+}
+.el-menu-item.is-active {
+    background-color: #40a9ff !important;
+    border-radius: 5px !important;
+    margin: 4px !important;
+}
+
+.el-aside {
+    box-shadow: 2px 0 6px rgba(0,0,0,0.3);
+}
+
+.el-header {
+    background-color: #ffffff;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.3);
+}
