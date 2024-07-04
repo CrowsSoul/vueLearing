@@ -6,6 +6,9 @@ import Teacher1 from "@/views/Teacher1.vue";
 import Teacher2 from "@/views/Teacher2.vue";
 import Teacher3 from "@/views/Teacher3.vue";
 import TeacherView from "@/views/TeacherView.vue";
+import PersonnelView from "@/views/PersonnelView.vue";
+import Personnel1 from "@/views/Personnel1.vue";
+import Personnel2 from "@/views/Personnel2.vue";
 
 Vue.use(VueRouter)
 
@@ -47,6 +50,21 @@ const routes = [
     path: '/Teacher/3',
     name: 'Teacher3',
     component: Teacher3
+  },
+  {
+    path: '/Personnel',
+    name: 'Personnel',
+    component: PersonnelView
+  },
+  {
+    path: '/Personnel/1',
+    name: 'Personnel1',
+    component: Personnel1
+  },
+  {
+    path: '/Personnel/2',
+    name: 'Personnel2',
+    component: Personnel2
   },
 ]
 
