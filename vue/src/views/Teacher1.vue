@@ -70,7 +70,13 @@
               </div>
               <div v-if="selectedCourse.reviews && selectedCourse.reviews.length">
                 <el-collapse>
-                  <el-collapse-item title="学生评价">
+                  <el-collapse-item>
+                    <template slot="title">
+                        <div style="font-size: 18px; font-weight: bold;
+                        padding-left: 250px">
+                          学生评价
+                        </div>
+                    </template>
                     <ul>
                       <li v-for="(review, index) in selectedCourse.reviews" :key="index">学生评价{{ index + 1 }}: {{ review }}</li>
                     </ul>
@@ -104,6 +110,7 @@
   text-align: center;
   margin-right: 50px;
 }
+
 </style>
 
 <script>
